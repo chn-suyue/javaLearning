@@ -1,4 +1,4 @@
-package qrcode;
+package utils.qrcode;
 
 import com.google.zxing.*;
 import com.google.zxing.common.BitMatrix;
