@@ -2,7 +2,6 @@ package juc;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
@@ -39,8 +38,8 @@ class MyCache {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        map.get(key);
-        System.out.println(Thread.currentThread().getName() + "\t读取完成！");
+            Object result = map.get(key);
+            System.out.println(Thread.currentThread().getName() + "\t读取完成！" + result);
         } catch (Exception e) {
             e.printStackTrace();
         }finally {
@@ -60,7 +59,7 @@ public class ReadWriteLockDemo {
     public static void main(String[] args) {
         MyCache myCache = new MyCache();
         for (int i = 1; i <= 5; i++) {
-            final int tempInt = 1;
+            final int tempInt = i;
             new Thread(() -> {
                 myCache.put(tempInt + "", tempInt + "");
             }, String.valueOf(i)).start();
