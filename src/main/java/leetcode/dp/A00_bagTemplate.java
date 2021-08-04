@@ -7,9 +7,9 @@ package leetcode.dp;
  * 然后，确定此问题是背包问题的哪种类型。
  * 最后，根据背包问题类型模板求解。
  * <p>
- * 背包问题的定义：给定一个背包容量target，再给定一个数组weight(物品)，能否按一定方式选取weight中的元素得到target。
+ * 背包问题的定义：给定一个背包容量target，再给定一个数组nums(物品)，能否按一定方式选取nums中的元素得到target。
  * 注意：
- * 1、背包容量target和物品weight的类型可能是数，也可能是字符串
+ * 1、背包容量target和物品nums的类型可能是数，也可能是字符串
  * 2、target可能题目已经给出(显式)，也可能是需要我们从题目的信息中挖掘出来(非显式)(常见的非显式target比如sum/2等)
  * 3、选取方式有常见的一下几种：每个元素选一次/每个元素选多次/选元素进行排列组合
  * <p>
@@ -30,6 +30,7 @@ package leetcode.dp;
  * 4、完全背包最值问题
  * 5、完全背包存在问题
  * 6、完全背包计数问题
+ *
  * @author: suyue
  * @time: 2021/7/31 16:46
  */
@@ -40,19 +41,22 @@ public class A00_bagTemplate {
         int[] values = {15, 20, 30};
         int target = 4;
 
-        int maxValue = basicBagTemplate(weight, values, target);
-        System.out.println(maxValue);
+        int maxValue1 = basicBagTemplateTwoDimensional(weight, values, target);
+        System.out.println(maxValue1);
+
+        int maxValue2 = basicBagTemplateOneDimensional(weight, values, target);
+        System.out.println(maxValue2);
 
     }
 
     /**
-     * 01背包基础问题：
+     * 01背包基础问题（二维数组）：
      * 有 n 件物品和⼀个容量为 target 的背包。第i件物品的重量是 weight[i]，得到的价值是value[i] 。
      * 每件物品只能用⼀次，求解将哪些物品装⼊背包里物品价值总和最⼤。
      * <p>
      * 基础模板:
      */
-    public static int basicBagTemplate(int[] weight, int[] values, int target) {
+    public static int basicBagTemplateTwoDimensional(int[] weight, int[] values, int target) {
 
         /**
          * dp[i][j]的含义：
@@ -92,8 +96,49 @@ public class A00_bagTemplate {
         }
 
         return dp[weight.length - 1][target];
-
     }
 
+    /**
+     * 01背包基础问题（一维数组）
+     *
+     * 基础模板:
+     */
+    public static int basicBagTemplateOneDimensional(int[] weight, int[] values, int target) {
+
+        /**
+         * dp[j]的含义：
+         *      容量为 j 的背包，背包内物品价值总和最大为 dp[j]
+         * 状态方程：
+         *      dp[j]=max{dp[j], dp[j-weight[i]]+values[i]}
+         * 初始条件：
+         *      均为0
+         * 计算顺序：
+         *      外层物品从小到大，内层背包从大到小
+         */
+
+        int[] dp = new int[target + 1];
+
+        for (int i = 0; i < weight.length; i++) {
+            for (int j = target; j >= 0; j--) {
+                if (j >= weight[i]) {
+                    dp[j] = Math.max(dp[j], dp[j - weight[i]] + values[i]);
+                }
+            }
+        }
+
+        return dp[target];
+    }
+
+    /**
+     * 01背包最值问题
+     *
+     */
+    public static int basicBagOfMinOrMaxTemplate(int[] nums, int target){
+        /**
+         *
+         */
+
+        return 0;
+    }
 
 }
