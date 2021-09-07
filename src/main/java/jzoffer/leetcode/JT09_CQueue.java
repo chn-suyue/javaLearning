@@ -7,7 +7,7 @@ import java.util.Stack;
  * @author: suyue
  * @time: 2021/8/15 16:47
  */
-public class jt09_CQueue {
+public class JT09_CQueue {
 
     Stack<Integer> stack1 = new Stack<>();
     Stack<Integer> stack2 = new Stack<>();

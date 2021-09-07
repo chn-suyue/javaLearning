@@ -7,7 +7,7 @@ import java.util.Stack;
  * @author: suyue
  * @time: 2021/8/15 17:35
  */
-public class jt30_MinStack {
+public class JT30_MinStack {
 
     Stack<Integer> stack1 = new Stack<>();
     Stack<Integer> stack2 = new Stack<>();
