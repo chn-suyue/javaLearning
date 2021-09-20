@@ -28,13 +28,14 @@ public class JT32_levelOrder {
         if (root==null) return new int[0];
 
         Queue<TreeNode> queue = new LinkedList<>();
-        queue.add(root);
+        TreeNode node = root;
+        queue.add(node);
 
         while (!queue.isEmpty()) {
-            root = queue.poll();
-            list.add(root.val);
-            if (root.left!=null) queue.add(root.left);
-            if (root.right!=null) queue.add(root.right);
+            node = queue.poll();
+            list.add(node.val);
+            if (node.left!=null) queue.add(node.left);
+            if (node.right!=null) queue.add(node.right);
         }
 
         int[] result = new int[list.size()];

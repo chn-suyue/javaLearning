@@ -21,6 +21,7 @@ public class NormalTest {
         System.out.println(a);
 
         Optional.ofNullable("a");
+
     }
 
 }
