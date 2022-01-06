@@ -7,7 +7,7 @@ import java.util.Arrays;
  * @author: suyue
  * @time: 2021/10/24 17:35
  */
-public class JT7_buildTree {
+public class JT07_buildTree {
 
     public class TreeNode {
         int val;
